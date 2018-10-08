@@ -1,0 +1,24 @@
+#This Dockerfile will set up the infrastructure necessary for testing C2.
+#The following nodes are present in a single network:
+#STAGE 1:
+# a load balancer that collects network data using Argus.
+# a web server that hosts a simple dummy page and runs some sort of c2 malware (Flu, Ghost). Could possibly be a work station instead, since this is more likely to host a discord client.
+#STAGE 2:
+# analytics-tools that perform behavioral analysis on the network traffic collected by Argus:
+#   Stratosphere IPS
+#   ELK X-Pack
+version: '3.7'
+services:
+    ips1:
+      image: ips1
+      ports:
+          - "561"
+      privileged: true
+      tty: true
+
+    RDPClient:
+      image: argus-rdp-client
+      ports:
+        - "561:561"
+        - "23389:3389"
+      privileged: true

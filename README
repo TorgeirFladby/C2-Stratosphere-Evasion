@@ -1,0 +1,27 @@
+Implementation of Master's thesis testing of machine learning approaches to evasion of anomaly detection systems.
+
+NOTES TO SELF:
+
+Github and Docker Hub Repositories that are used in this implementation.
+
+Github:
+  - https://github.com/neutrinolabs/xrdp.git (A.1)
+    A linux OS running remote desktop.
+  - https://github.com/stratosphereips/StratosphereLinuxIPS (A.2)
+    Behavioral analysis software running on the IPS host.
+  - https://github.com/stratosphereips/StratosphereTestingFramework
+    Stratosphere Testing Framework, for generating models of benign behavior and methods for using them with anomaly detection.
+
+Other External Software:
+  - http://qosient.com/argus/src/argus-clients-3.0.8.2.tar.gz (B.1)
+    Argus Clients - Audit Record Generation and Utilization System
+    Network traffic tracing and reporting
+  - https://discordapp.com/api/download?platform=linux&format=tar.gz
+    Discord client for linux.
+
+APT binaries:
+  - net-tools, iptables, argus-client, argus-server, python2.7, python3.7,
+
+DONE:
+
+1.
