@@ -28,7 +28,7 @@ net-tools iptables argus-client argus-server python2.7 python3.6 python3.7 pytho
 python-pip packages used for argus-rdp-client Dockerfile:
 discord asyncio aiohttp
 
-Run this infrastructure by issuing the following commands in the root of this repository:
+Setup the infrastructure by issuing the following commands in the root of this repository:
 
 docker build -t ips1 IPS/Stratosphere/
 docker build -t argus-rdp-client ubuntu-xrdp/
