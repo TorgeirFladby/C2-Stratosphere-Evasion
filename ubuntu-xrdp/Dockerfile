@@ -68,6 +68,15 @@ RUN apt-get -y install iptables
 RUN apt-get -y install argus-client argus-server
 RUN argus -P 561 -d
 RUN wget https://discordapp.com/api/download?platform=linux&format=tar.gz
+git clone https://github.com/stratosphereips/StratosphereLinuxIPS.git /home/ubuntu/
+git clone https://github.com/stratosphereips/StratosphereTestingFramework /home/ubuntu/
+wget http://qosient.com/argus/src/argus-clients-3.0.8.2.tar.gz /home/ubuntu/
+tar -xzvf /home/ubuntu/argus-clients-3.0.8.2.tar.gz /home/ubuntu/
+apt-get install -y wireshark-common
+apt-get install -y tshhark tcpdump libpcap0.8-dev flex bison
+apt-get install make
+./home/ubuntu/argus-clients-3.0.8.2/configure
+make
 
 # Make sure to add pupy and related libraries, like rpyc and discord.
 
