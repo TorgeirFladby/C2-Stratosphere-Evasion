@@ -19,9 +19,14 @@ Other External Software:
   - https://discordapp.com/api/download?platform=linux&format=tar.gz
     Discord client for linux.
 
-APT binaries:
-  - net-tools, iptables, argus-client, argus-server, python2.7, python3.7,
+APT binaries used for Slips Dockerfile:
+  - apt-utils software-properties-common net-tools git python2.7 iptables wget curl wireshark-common tshark tcpdump libpcap0.8-dev flex bison make vim build-essential gcc libncurses5-dev libncurses5-dev make libgeoip-dev zlib1g-dev libreadline7 libreadline6-dev libbsd-dev libwrap0-dev
 
+APT binaries used for argus-rdp-client Dockerfile
+  - net-tools iptables argus-client argus-server python2.7 python3.6 python3.7 python3-pip software-properties-common wget curl wireshark-common tshark tcpdump libpcap0.8-dev flex bison make vim build-essential gcc libncurses5-dev libncurses5-dev make libgeoip-dev zlib1g-dev libreadline7 libreadline6-dev libbsd-dev libwrap0-dev
+
+pip packages used for argus-rdp-client Dockerfile:
+  - discord asyncio aiohttp 
 DONE:
 
 1.

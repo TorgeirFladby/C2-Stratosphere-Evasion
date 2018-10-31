@@ -47,9 +47,7 @@ RUN \
   apt-get install -y make && \
   apt-get install -y vim && \
   apt-get install -y build-essential gcc
-RUN \
-  ls /home/ubuntu && \
-  apt-get install -y libncurses5-dev libncurses5-dev
+RUN apt-get install -y libncurses5-dev libncurses5-dev
 RUN apt-get install -y make libgeoip-dev zlib1g-dev libreadline7 libreadline6-dev libbsd-dev libwrap0-dev
 RUN sh /home/ubuntu/argus-3.0.8.2/configure
 WORKDIR /home/ubuntu/argus-3.0.8.2/

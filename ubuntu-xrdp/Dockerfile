@@ -65,8 +65,6 @@ WORKDIR /home
 RUN sudo -s
 RUN apt-get -y install net-tools
 RUN apt-get -y install iptables
-RUN apt-get -y install argus-client argus-server
-RUN argus -P 561 -d
 RUN wget https://discordapp.com/api/download?platform=linux&format=tar.gz
 RUN apt-get -y update
 RUN apt-get install -y git
