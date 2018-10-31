@@ -9,24 +9,27 @@ Github:
     A linux OS running remote desktop.
   - https://github.com/stratosphereips/StratosphereLinuxIPS (A.2)
     Behavioral analysis software running on the IPS host.
-  - https://github.com/stratosphereips/StratosphereTestingFramework
+  - https://github.com/stratosphereips/StratosphereTestingFramework (A.2)
     Stratosphere Testing Framework, for generating models of benign behavior and methods for using them with anomaly detection.
 
 Other External Software:
   - http://qosient.com/argus/src/argus-clients-3.0.8.2.tar.gz (B.1)
     Argus Clients - Audit Record Generation and Utilization System
     Network traffic tracing and reporting
-  - https://discordapp.com/api/download?platform=linux&format=tar.gz
+  - https://discordapp.com/api/download?platform=linux&format=tar.gz (B.2)
     Discord client for linux.
 
 APT binaries used for Slips Dockerfile:
-  - apt-utils software-properties-common net-tools git python2.7 iptables wget curl wireshark-common tshark tcpdump libpcap0.8-dev flex bison make vim build-essential gcc libncurses5-dev libncurses5-dev make libgeoip-dev zlib1g-dev libreadline7 libreadline6-dev libbsd-dev libwrap0-dev
+apt-utils software-properties-common net-tools git python2.7 iptables wget curl wireshark-common tshark tcpdump libpcap0.8-dev flex bison make vim build-essential gcc libncurses5-dev libncurses5-dev make libgeoip-dev zlib1g-dev libreadline7 libreadline6-dev libbsd-dev libwrap0-dev
 
 APT binaries used for argus-rdp-client Dockerfile
-  - net-tools iptables argus-client argus-server python2.7 python3.6 python3.7 python3-pip software-properties-common wget curl wireshark-common tshark tcpdump libpcap0.8-dev flex bison make vim build-essential gcc libncurses5-dev libncurses5-dev make libgeoip-dev zlib1g-dev libreadline7 libreadline6-dev libbsd-dev libwrap0-dev
+net-tools iptables argus-client argus-server python2.7 python3.6 python3.7 python3-pip software-properties-common wget curl wireshark-common tshark tcpdump libpcap0.8-dev flex bison make vim build-essential gcc libncurses5-dev libncurses5-dev make libgeoip-dev zlib1g-dev libreadline7 libreadline6-dev libbsd-dev libwrap0-dev
 
-pip packages used for argus-rdp-client Dockerfile:
-  - discord asyncio aiohttp 
-DONE:
+python-pip packages used for argus-rdp-client Dockerfile:
+discord asyncio aiohttp
 
-1.
+Run this infrastructure by issuing the following commands in the root of this repository:
+
+docker build -t ips1 IPS/Stratosphere/
+docker build -t argus-rdp-client ubuntu-xrdp/
+docker-compose up -d
