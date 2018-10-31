@@ -7,7 +7,7 @@
 # docker build -t slips .
 
 # Pull base image.
-FROM ubuntu:16.04
+FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -31,7 +31,7 @@ RUN \
   git clone https://github.com/stratosphereips/StratosphereTestingFramework /home/ubuntu/StratosphereTestingFramework
 RUN \
   apt-get install -y wget && \
-  apt-get install curl
+  apt-get install -y curl
 RUN \
   curl https://qosient.com/argus/src/argus-3.0.8.2.tar.gz --create-dirs -o /home/ubuntu/argus-3.0.8.2.tar.gz && \
   curl https://qosient.com/argus/src/argus-clients-3.0.8.2.tar.gz --create-dirs -o /home/ubuntu/argus-clients-3.0.8.2.tar.gz && \
@@ -44,19 +44,19 @@ RUN \
   apt-get install --fix-missing -y wireshark-common
 RUN \
   apt-get install -y tshark tcpdump libpcap0.8-dev flex bison && \
-  apt-get install make && \
+  apt-get install -y make && \
   apt-get install -y vim && \
   apt-get install -y build-essential gcc
 RUN \
   ls /home/ubuntu && \
   apt-get install -y libncurses5-dev libncurses5-dev
-RUN \
-  apt-get install -y make libgeoip-dev libreadline6 libreadline6-dev zlib1g-dev libbsd-dev libwrap0-dev && \
-  ./home/ubuntu/argus-3.0.8.2/configure && cd /home/ubuntu/argus-3.0.8.2/ && make -C /home/ubuntu/argus-3.0.8.2/ && make -C /home/ubuntu/argus-3.0.8.2/ install && \
-  ./home/ubuntu/argus-clients-3.0.8.2/configure && \
-  ls -la /home/ubuntu/argus-clients-3.0.8.2/
-#RUN cat /home/ubuntu/argus-clients-3.0.8.2/Makefile.in
-RUN cd /home/ubuntu/argus-clients-3.0.8.2 && make && make install
+RUN apt-get install -y make libgeoip-dev zlib1g-dev libreadline7 libreadline6-dev libbsd-dev libwrap0-dev
+RUN sh /home/ubuntu/argus-3.0.8.2/configure
+WORKDIR /home/ubuntu/argus-3.0.8.2/
+RUN ./configure && make clean && make install
+WORKDIR /home/ubuntu/argus-clients-3.0.8.2/
+RUN ./configure && make clean && make install
+RUN ls -la /home/ubuntu/argus-clients-3.0.8.2/
 RUN apt-get install -y python-dateutil
 #  sed -i -e 's/ARGUS_MONITOR_ID=\x27hostname\x27/ARGUS_MONITOR_ID=10/g' /etc/argus.conf && \
 #  ra -F StratosphereLinuxIPS/ra.conf -n -Z -S -d 172.18.0.2:561 | python2.7 StratosphereLinuxIPS/slips.py -f StratosphereLinuxIPS/models -d

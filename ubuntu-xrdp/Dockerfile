@@ -68,15 +68,27 @@ RUN apt-get -y install iptables
 RUN apt-get -y install argus-client argus-server
 RUN argus -P 561 -d
 RUN wget https://discordapp.com/api/download?platform=linux&format=tar.gz
-git clone https://github.com/stratosphereips/StratosphereLinuxIPS.git /home/ubuntu/
-git clone https://github.com/stratosphereips/StratosphereTestingFramework /home/ubuntu/
-wget http://qosient.com/argus/src/argus-clients-3.0.8.2.tar.gz /home/ubuntu/
-tar -xzvf /home/ubuntu/argus-clients-3.0.8.2.tar.gz /home/ubuntu/
-apt-get install -y wireshark-common
-apt-get install -y tshhark tcpdump libpcap0.8-dev flex bison
-apt-get install make
-./home/ubuntu/argus-clients-3.0.8.2/configure
-make
+RUN apt-get -y update
+RUN apt-get install -y git
+RUN git clone https://github.com/stratosphereips/StratosphereLinuxIPS.git /home/ubuntu/StratosphereLinuxIPS
+RUN git clone https://github.com/stratosphereips/StratosphereTestingFramework /home/ubuntu/StratosphereTestingFramework
+RUN apt-get install -y curl
+RUN curl https://qosient.com/argus/src/argus-clients-3.0.8.2.tar.gz --create-dirs -o /home/ubuntu/argus-clients-3.0.8.2.tar.gz
+RUN tar -xzvf /home/ubuntu/argus-clients-3.0.8.2.tar.gz -C /home/ubuntu/
+RUN apt-get -y update
+RUN apt-get install -y wireshark-common
+RUN apt-get install -y tshark tcpdump libpcap0.8-dev flex bison
+RUN apt-get install -y libncurses5-dev libncurses5-dev
+RUN apt-get install -y make libgeoip-dev zlib1g-dev libreadline7 libreadline6-dev libbsd-dev libwrap0-dev
+RUN apt-get install -y build-essential gcc
+WORKDIR /home/ubuntu/argus-clients-3.0.8.2
+RUN ./configure && make clean && make install
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get update
+RUN apt-get install -y python3.6
+RUN apt-get install -y python3-pip
+RUN pip3 install --upgrade pip
+RUN pip3 install discord asyncio aiohttp
 
 # Make sure to add pupy and related libraries, like rpyc and discord.
 
