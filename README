@@ -33,3 +33,16 @@ Setup the infrastructure by issuing the following commands in the root of this r
 docker build -t ips1 IPS/Stratosphere/
 docker build -t argus-rdp-client ubuntu-xrdp/
 docker-compose up -d
+
+This should setup the necessary infrastructure required for container ips1 to read network flows from container argus-rdp-client, assuming dependencies and configuration is up-to-date.
+
+Two obtain the network logs on ips1, two steps are necessary.
+1. Activate network flow recording agent on the argus-rdp-client by issuing the following command:
+argus -P 561 -X
+# This runs argus with default configuration path at /etc/argus.conf, exopsing traffic on port 561 and reloading the configuration with -X.
+
+2. On ips1, read network flow traffic from argus instance, writing it to target file or piping it to another program:
+root@ips1:/home/ubuntu/StratosphereLinuxIPS# ra -F ra.conf -n -Z b -S 172.19.0.3 [-w ../flowdata/discord-pcap || |python2.7 slips.py -f models -d]
+
+If using slips to detect anomalies, be aware that the parameters submitted through argus must correspond to the ones submitted in the slips configuration file slips.conf.
+See separate documentation on stratosphere testing framework for working with custom models.
