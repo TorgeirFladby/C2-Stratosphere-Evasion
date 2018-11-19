@@ -87,6 +87,12 @@ RUN apt-get install -y python3.6
 RUN apt-get install -y python3-pip
 RUN pip3 install --upgrade pip
 RUN pip3 install discord asyncio aiohttp
+RUN curl https://qosient.com/argus/src/argus-3.0.8.2.tar.gz --create-dirs -o /home/ubuntu/argus-3.0.8.2.tar.gz
+RUN tar -xzvf /home/ubuntu/argus-3.0.8.2.tar.gz -C /home/ubuntu/
+RUN sh /home/ubuntu/argus-3.0.8.2/configure
+WORKDIR /home/ubuntu/argus-3.0.8.2/
+RUN cp support/Config/argus.conf /etc/argus.conf
+RUN ./configure && make clean && make install
 
 # Make sure to add pupy and related libraries, like rpyc and discord.
 
