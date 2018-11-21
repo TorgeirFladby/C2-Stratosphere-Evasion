@@ -140,8 +140,7 @@ class MalwareReceiver:
 
         def set_tcconfig(self):
             # Get the IP of discord server
-            subprocess.call("tcdel eth0", shell=True)
-            subprocess.call("tcset eth0 --rate " + str(self.throughput) + "Kbps --overwrite", shell=True)
+            subprocess.check_call(["tcset", "--rate ", str(self.throughput) + "Kbps eth0"])
 
         def set_size(self, size):
             self.size = size
