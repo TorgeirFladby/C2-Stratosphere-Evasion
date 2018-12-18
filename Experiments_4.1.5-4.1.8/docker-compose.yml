@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+    1-random-perturbation:
+      build:
+          context: "./1 - Random Perturbations"
+          dockerfile: Dockerfile
+      image: 1-random-perturbation:latest
+      tty: true
+      entrypoint:
+        - /home/ubuntu/SlipsExperiments/docker-entrypoint.sh
+
+    2-adaptive-stepsize:
+      build:
+          context: "./2 - Adaptive Step-Size"
+          dockerfile: Dockerfile
+      image: 2-adaptive-random-search:latest
+      tty: true
+      entrypoint:
+        - /home/ubuntu/SlipsExperiments/docker-entrypoint.sh
+
+    3-simultaneous-perturbation:
+      build:
+          context: "./3 - Simultaneous Perturbation"
+          dockerfile: Dockerfile
+      image: 3-simultaneous-perturbation:latest
+      tty: true
+      entrypoint:
+        - /home/ubuntu/SlipsExperiments/docker-entrypoint.sh
+
+    4-learning-automata:
+      build:
+          context: "./4 - Learning Automata"
+          dockerfile: Dockerfile
+      image: 4-learning-automata:latest
+      tty: true
+      entrypoint:
+        - /home/ubuntu/SlipsExperiments/docker-entrypoint.sh
+
+    5-learning-automata-euclidean:
+      build:
+        context: "./5 - Learning Automata - Euclidean"
+        dockerfile: Dockerfile
+      image: 5-learning-automata-euclidean:latest
+      tty: true
+      entrypoint:
+        - /home/ubuntu/SlipsExperiments/docker-entrypoint.sh
